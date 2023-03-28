@@ -1,0 +1,42 @@
+{
+  "scripts": {
+    "update": "dt-app update",
+    "deploy": "dt-app deploy",
+    "uninstall": "dt-app uninstall",
+    "generate:function": "dt-app generate function",
+    "build": "dt-app build --prod",
+    "start": "dt-app dev",
+    "info": "dt-app info",
+    "help": "dt-app help",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.34",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "@dynatrace/dt-app": "0.94.2"
+  },
+  "name": "synthetic-multi-updater",
+  "version": "0.0.0",
+  "description": "An empty project",
+  "engines": {
+    "node": ">=16.13.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dynatrace-sdk/client-classic-environment-v1": "1.0.0",
+    "@dynatrace-sdk/client-query-v02": "0.4.9",
+    "@dynatrace-sdk/navigation": "0.2.7",
+    "@dynatrace/sdk-web": "0.7.3",
+    "@dynatrace/strato-components-preview": "0.92.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-router-dom": "^6.4.1"
+  }
+}
