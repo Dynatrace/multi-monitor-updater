@@ -15,10 +15,21 @@ interface MonitorListProps {
     setSelectedForEdit: (ids: string[]) => void;
     pageSize: number;
     onPageSizeChange: (pageSize: number) => void;
+    onPageChange: (pageSize: number, pageIndex: number) => void;
+
 }
 
 export const MonitorList = (props: MonitorListProps): JSX.Element => {
-    const {monitors, isLoading, selectedForPreview, setSelectedForPreview, setSelectedForEdit, pageSize, onPageSizeChange} = props;
+    const {
+        monitors,
+        isLoading,
+        selectedForPreview,
+        setSelectedForPreview,
+        setSelectedForEdit,
+        pageSize,
+        onPageSizeChange,
+        onPageChange
+    } = props;
     const onSelectedForPreviewHandler = useCallback((event) => {
         setSelectedForPreview(event.target.dataset.id);
     }, [setSelectedForPreview]);
@@ -70,7 +81,7 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
                         sortBy={{id: 'name', desc: false}}
                         onRowSelectionChange={rowSelectionChangedHandler}
                     >
-                        <DataTable.Pagination pageSize={pageSize} onPageSizeChange={onPageSizeChange}/>
+                        <DataTable.Pagination pageSize={pageSize} onPageChange={onPageChange} onPageSizeChange={onPageSizeChange}/>
                     </DataTable>
                 </div>
             )}
