@@ -12,6 +12,7 @@ export enum ConfigParam {
   MANUALLY_ASSIGNED_APPS = 'manuallyAssignedApps',
   OUTAGE_HANDLING = 'anomalyDetection.outageHandling',
   TAGS = 'tags',
+  OTHER = 'other'
 }
 
 export interface OutageHandlingParam {

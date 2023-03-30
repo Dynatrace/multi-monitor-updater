@@ -69,7 +69,7 @@ export const getInitialBulkConfig: (fetchedConfigs: SyntheticMonitor[]) => Initi
     const tagToCount = new Map<string, number>();
 
     const baseConfig = fetchedConfigs[0];
-    const baseOutageHandling = baseConfig.anomalyDetection?.outageHandling;
+    const baseOutageHandling = baseConfig?.anomalyDetection?.outageHandling;
     fetchedConfigs.forEach(config => {
       const outageHandling = config.anomalyDetection?.outageHandling;
       sameGlobalOutage = sameGlobalOutage && outageHandling?.globalOutage === baseOutageHandling?.globalOutage;
@@ -82,7 +82,7 @@ export const getInitialBulkConfig: (fetchedConfigs: SyntheticMonitor[]) => Initi
     });
 
     return {
-      frequencyMin: sameFrequency ? baseConfig.frequencyMin : wildcard,
+      frequencyMin: sameFrequency ? baseConfig?.frequencyMin : wildcard,
       locations: getCommonListItems(locationToCount, fetchedConfigs.length),
       manuallyAssignedApps: getCommonListItems(applicationToCount, fetchedConfigs.length),
       outageHandling: {
