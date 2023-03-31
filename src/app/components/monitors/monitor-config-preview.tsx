@@ -3,7 +3,7 @@ import {CodeEditor} from '@dynatrace/strato-components-preview/editors';
 import {Flex, LoadingIndicator} from '@dynatrace/strato-components-preview';
 import {syntheticMonitorsClient} from '@dynatrace-sdk/client-classic-environment-v1';
 import {
-    SyntheticMonitor,
+  SyntheticMonitor,
 } from '@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/synthetic-monitor';
 import {Text} from '@dynatrace/strato-components-preview/typography';
 
@@ -45,7 +45,7 @@ export const MonitorConfigPreview = ({ monitorId, height }: { monitorId: string 
   return (
     (<Fragment>
       <LoadingIndicator loading={isLoading} />
-      <Flex maxHeight={height} flexDirection="column" justifyContent={"center"}>
+      <Flex height={height} flexDirection="column" justifyContent={"center"}>
         {(isLoading || configAsString.length > 0) && (
           <CodeEditor language="json" readOnly lineWrap fullHeight value={configAsString} />
         )}

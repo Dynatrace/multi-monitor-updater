@@ -21,6 +21,7 @@
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "@dynatrace/dt-app": "0.97.0"
     "jest": "^29.5.0",
     "ts-jest": "^29.0.5"
   },
@@ -37,7 +38,7 @@
     "@dynatrace-sdk/client-query-v02": "0.4.9",
     "@dynatrace-sdk/navigation": "0.2.7",
     "@dynatrace/sdk-web": "0.7.3",
-    "@dynatrace/strato-components-preview": "0.92.1",
+    "@dynatrace/strato-components-preview": "0.93.3",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^6.4.1"

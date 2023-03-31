@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
-    Button,
-    Flex,
-    LoadingIndicator,
-    Modal,
-    OverlayContainer,
-    TitleBar,
-    useContainerBreakpoint,
+  Button,
+  Flex,
+  LoadingIndicator,
+  Modal,
+  OverlayContainer,
+  TitleBar,
+  useContainerBreakpoint,
 } from '@dynatrace/strato-components-preview';
 import {MonitorList} from './monitor-list';
 import Spacings from '@dynatrace/strato-design-tokens/spacings';
@@ -15,7 +15,7 @@ import {ListFilters} from './list-filters';
 import {MonitorConfigPreview} from './monitor-config-preview';
 import {FilterItemValues} from '@dynatrace/strato-components-preview/filters';
 import {
-    MonitorCollectionElement,
+  MonitorCollectionElement,
 } from '@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/monitor-collection-element';
 import {Monitors, syntheticMonitorsClient} from '@dynatrace-sdk/client-classic-environment-v1';
 import {BulkUpdateModal} from '../bulk-update/bulk-update-modal';
@@ -59,6 +59,10 @@ export const Home = (): JSX.Element => {
   const filtersChangedHandler = (filterItemValues: FilterItemValues) => {
     setFilterItemValues(filterItemValues);
   };
+
+  const pageChangeHandler = ()=> {
+    setSelectedForEdit([]);
+  }
 
   const fetchIdRef = useRef(0);
 
@@ -165,6 +169,7 @@ export const Home = (): JSX.Element => {
               setSelectedForEdit={setSelectedForEdit}
               pageSize={pageSize}
               onPageSizeChange={setPageSize}
+              onPageChange={pageChangeHandler}
             />
           </Grid>
           <Grid gridItem key="config" gridArea="config">

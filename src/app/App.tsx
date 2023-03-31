@@ -46,7 +46,7 @@ export const App = () => {
         <Home />
       </Page.Main>
       <Page.DetailView
-        onDismiss={() => setDetailsDismissed(true)}
+        onDismissChange={(state) => setDetailsDismissed(state)}
         dismissed={detailsDismissed}
         preferredWidth={360}
       >

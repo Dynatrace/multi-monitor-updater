@@ -3,7 +3,7 @@ import {
     MonitorCollectionElement,
 } from '@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/monitor-collection-element';
 import Colors from '@dynatrace/strato-design-tokens/colors';
-import {DataTable, TableColumn} from '@dynatrace/strato-components-preview';
+import {DataTable, TableColumn, TableVariantConfig} from '@dynatrace/strato-components-preview';
 import {Text} from '@dynatrace/strato-components-preview/typography';
 import "./monitor-list.css"
 
@@ -15,10 +15,21 @@ interface MonitorListProps {
     setSelectedForEdit: (ids: string[]) => void;
     pageSize: number;
     onPageSizeChange: (pageSize: number) => void;
+    onPageChange: (pageSize: number, pageIndex: number) => void;
+
 }
 
 export const MonitorList = (props: MonitorListProps): JSX.Element => {
-    const {monitors, isLoading, selectedForPreview, setSelectedForPreview, setSelectedForEdit, pageSize, onPageSizeChange} = props;
+    const {
+        monitors,
+        isLoading,
+        selectedForPreview,
+        setSelectedForPreview,
+        setSelectedForEdit,
+        pageSize,
+        onPageSizeChange,
+        onPageChange
+    } = props;
     const onSelectedForPreviewHandler = useCallback((event) => {
         setSelectedForPreview(event.target.dataset.id);
     }, [setSelectedForPreview]);
@@ -58,6 +69,13 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
         setSelectedForEdit(data.map(item => item.original.entityId));
     };
 
+    const tableVariant: TableVariantConfig = {
+        rowDensity: 'default',
+        rowSeparation: 'none',
+        verticalDividers: false,
+        contained: false,
+    };
+
     return (
         (<Fragment>
             {monitors.length > 0 && (
@@ -68,9 +86,10 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
                         sortable
                         selectableRows
                         sortBy={{id: 'name', desc: false}}
+                        variant={tableVariant}
                         onRowSelectionChange={rowSelectionChangedHandler}
                     >
-                        <DataTable.Pagination pageSize={pageSize} onPageSizeChange={onPageSizeChange}/>
+                        <DataTable.Pagination pageSize={pageSize} onPageChange={onPageChange} onPageSizeChange={onPageSizeChange}/>
                     </DataTable>
                 </div>
             )}
