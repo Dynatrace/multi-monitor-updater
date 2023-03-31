@@ -21,7 +21,7 @@
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "@dynatrace/dt-app": "0.97.0"
+    "@dynatrace/dt-app": "0.97.0",
     "jest": "^29.5.0",
     "ts-jest": "^29.0.5"
   },
