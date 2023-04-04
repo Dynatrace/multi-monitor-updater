@@ -1,11 +1,12 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
   Button,
+  Divider,
   Flex,
+  Heading,
   LoadingIndicator,
   Modal,
   OverlayContainer,
-  TitleBar,
   useContainerBreakpoint,
 } from '@dynatrace/strato-components-preview';
 import {MonitorList} from './monitor-list';
@@ -27,9 +28,8 @@ import {Text} from "@dynatrace/strato-components-preview/typography";
 
 const StyledWrapper = styled.div`
   color: ${Colors.Text.Neutral.Default};
-  background: ${Colors.Theme.Background[20]};
+  background: ${Colors.Theme.Background[10]};
   border-radius: ${Borders.Radius.Surface.Default};
-  padding: ${Spacings.Size16};
   text-decoration: "none";
   display: "block";
 `;
@@ -135,25 +135,30 @@ export const Home = (): JSX.Element => {
 
   return (
     <StyledWrapper ref={containerRef}>
-      <Flex flexDirection="column">
-        <div>
-          <TitleBar>
-            <TitleBar.Title>Synthetic monitors</TitleBar.Title>
-            <TitleBar.Suffix>
-              <Flex flexDirection={"row"} alignItems={"baseline"}>
-                {selectedForEdit.length > 0 && <Text>{selectedForEdit.length} {countMonitors()} selected</Text>}
-                <Button variant="primary" onClick={() => setShowFormModal(true)} disabled={selectedForEdit.length === 0}>
-                  Edit
-                </Button>
-              </Flex>
-            </TitleBar.Suffix>
-          </TitleBar>
-        </div>
+      <Flex flexDirection="column" gap={24}>
+        <Flex flexWrap={"wrap"}>
+          <Flex flexDirection={"row"} justifyContent={"space-between"} flexGrow={1}>
+            <Heading level={4}>Synthetic monitors</Heading>
+            <Flex flexDirection={"row"} alignItems={"baseline"}>
+              <Text textStyle={"default-emphasized"} style={{
+                backgroundColor: `${Colors.Theme.Neutral["30"]}`,
+                borderRadius: `${Borders.Radius.Field.Emphasized}`,
+                padding: `${Spacings.Size2} ${Spacings.Size6}`
+              }}>
+                {selectedForEdit.length === 0 ? 'No' : selectedForEdit.length} {countMonitors()} selected
+              </Text>
+              <Button variant="primary" onClick={() => setShowFormModal(true)} disabled={selectedForEdit.length === 0}>
+                Edit
+              </Button>
+            </Flex>
+          </Flex>
+          <Divider/>
+        </Flex>
         <Grid
           width="100%"
           gridTemplateColumns="repeat(2, 1fr);"
           gridTemplateAreas={getGridTemplateAreas()}
-          gap={24}
+          columnGap={24}
         >
           <Grid gridItem gridArea="filters">
             <Flex flexDirection={"row"} alignItems={"baseline"} >
