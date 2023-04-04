@@ -71,7 +71,7 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
 
     const tableVariant: TableVariantConfig = {
         rowDensity: 'default',
-        rowSeparation: 'none',
+        rowSeparation: 'horizontalDividers',
         verticalDividers: false,
         contained: false,
     };
@@ -94,7 +94,7 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
                 </div>
             )}
             {!isLoading && monitors.length === 0 && (
-                <Text textStyle="base-emphasized" style={{padding: '8px 0'}}>
+                <Text textStyle="default-emphasized" style={{padding: '8px 0'}}>
                     No monitors found.
                 </Text>
             )}

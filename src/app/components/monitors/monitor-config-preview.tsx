@@ -50,7 +50,7 @@ export const MonitorConfigPreview = ({ monitorId, height }: { monitorId: string 
           <CodeEditor language="json" readOnly lineWrap fullHeight value={configAsString} />
         )}
         {!isLoading && configAsString.length === 0 && (
-          <Text textStyle="base-emphasized">
+          <Text textStyle="default-emphasized">
             No monitor selected. Click one of the names in the list to display the configuration in JSON format here.
           </Text>
         )}

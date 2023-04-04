@@ -1,15 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import {Flex, Heading, Link, Text} from '@dynatrace/strato-components-preview';
-import Colors from '@dynatrace/strato-design-tokens/colors';
-import Spacings from '@dynatrace/strato-design-tokens/spacings';
-import Borders from '@dynatrace/strato-design-tokens/borders';
+import React from "react";
+import styled from "styled-components";
+import {Flex, Heading, Link, Text,} from '@dynatrace/strato-components-preview';
+import {Borders, BoxShadows, Colors, Spacings} from '@dynatrace/strato-design-tokens';
 import {ExternalLinkIcon} from '@dynatrace/strato-icons';
-
 
 type DetailViewCardProps = {
   href: string;
-  icon: React.ReactNode;
+  imgSrc: string;
   headline: string;
   text: string;
 };
@@ -17,19 +14,24 @@ type DetailViewCardProps = {
 const StyledWrapper = styled(Link)`
   color: ${Colors.Text.Neutral.Default};
   background: ${Colors.Theme.Background[20]};
-  border-radius: ${Borders.Radius.Container.Default};
+  border-radius: ${Borders.Radius.Surface.Default};
   padding: ${Spacings.Size8};
   padding-right: ${Spacings.Size20};
   text-decoration: "none";
   display: "block";
+  &:hover {
+    box-shadow: ${BoxShadows.Surface.Flat.Hover};
+    text-decoration: inherit;
+    color: inherit;
+  }
 `;
 
 export const DetailViewCard = ({
-                                 href,
-                                 icon,
-                                 headline,
-                                 text,
-                               }: DetailViewCardProps): JSX.Element => {
+  href,
+  imgSrc,
+  headline,
+  text,
+}: DetailViewCardProps) => {
   return (
     <StyledWrapper target="_blank" href={href} rel="noopener noreferrer">
       <Flex flexDirection="row" width="100%" gap={16}>
@@ -44,14 +46,15 @@ export const DetailViewCard = ({
               borderRadius: `${Borders.Radius.Container.Default}`,
             }}
           >
-            {icon}
+            <img
+                src={imgSrc}
+                width="56px"
+              />
           </Flex>
         </Flex>
-        <Flex flexGrow={1}>
-          <Flex alignSelf={"center"} flexDirection="column" gap={4}>
+        <Flex flexGrow={1} alignSelf={"center"} flexDirection="column" gap={4}>
             <Heading level={6}>{headline}</Heading>
             <Text>{text}</Text>
-          </Flex>
         </Flex>
         <Flex justifyContent="center">
           <Flex alignSelf={"center"}>

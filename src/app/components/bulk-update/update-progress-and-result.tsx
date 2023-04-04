@@ -10,19 +10,19 @@ export const UpdateProgressAndResult = ({ updateState, requestCount }: { updateS
       {!updateState.completed && (
         <Fragment>
           <ProgressBar max={requestCount} value={updateState.progressCounter} />
-          <Text textStyle="base-emphasized">
+          <Text textStyle="default-emphasized">
             In progress: {updateState.progressCounter}/{requestCount}
           </Text>
         </Fragment>
       )}
       {updateState.completed && updateState.success && (
-        <Text textStyle="base-emphasized">
+        <Text textStyle="default-emphasized">
           Success! Updated {requestCount} configurations.
         </Text>
       )}
       {updateState.completed && !updateState.success && (
         <Fragment>
-          <Text textStyle="base-emphasized">
+          <Text textStyle="default-emphasized">
             Error! At least one configuration was not updated.
           </Text>
           <Text>

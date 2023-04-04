@@ -34,11 +34,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dynatrace-sdk/client-classic-environment-v1": "1.0.0",
-    "@dynatrace-sdk/client-query-v02": "0.4.9",
+    "@dynatrace-sdk/app-environment": "0.2.7",
+    "@dynatrace-sdk/client-classic-environment-v1": "0.2.7",
+    "@dynatrace-sdk/client-query-v02": "0.4.5",
     "@dynatrace-sdk/navigation": "0.2.7",
     "@dynatrace/sdk-web": "0.7.3",
-    "@dynatrace/strato-components-preview": "0.93.3",
+    "@dynatrace/strato-components-preview": "0.90.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^6.4.1"

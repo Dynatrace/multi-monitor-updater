@@ -165,7 +165,7 @@ export const BulkUpdateModal = ({ selectedIds, showFormHandler, setSelectedForPr
     setSelectedForPreview(null);
   }
   const footer = (updateState.completed &&
-      <Button data-testid="close-modal-button" variant={"accent"} onClick={dismissHandler}>
+      <Button data-testid="close-modal-button" variant={"primary"} onClick={dismissHandler}>
         Close
       </Button>
   );
@@ -187,7 +187,7 @@ export const BulkUpdateModal = ({ selectedIds, showFormHandler, setSelectedForPr
                       <Heading level={3}>
                         Update parameters
                       </Heading>
-                      <Button variant="accent" onClick={saveUpdateHandler}>
+                      <Button variant="primary" onClick={saveUpdateHandler}>
                         Update
                       </Button>
                     </Flex>

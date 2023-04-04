@@ -2,6 +2,7 @@ import React, {cloneElement, ReactElement} from 'react';
 import {FilterBar, FilterItemValues} from '@dynatrace/strato-components-preview/filters';
 import {Select, SelectOption, TextInput} from '@dynatrace/strato-components-preview/forms';
 import {mergeProps} from '@react-aria/utils';
+import './list-filters.css'
 
 type MappingProps = {
   children: ReactElement;
@@ -49,34 +50,36 @@ export const ListFilters = ({ onFiltersChanged }: { onFiltersChanged: (appliedFi
   };
 
   return (
-    <FilterBar onFilterChange={onFiltersChanged}>
-      <FilterBar.Item name="type" label="Type">
-        <Mapper defaultValue={defaultFilterState.type.value}>
-          <Select
-            defaultSelectedId={defaultFilterState.type.value}
-            name="type"
-            id="type-select"
-          >
-            {monitorTypeOptions.map((type: MonitorTypeOption) => (
-              <SelectOption key={type.id} id={type.id}>
-                {type.displayName}
-              </SelectOption>
-            ))}
-          </Select>
-        </Mapper>
-      </FilterBar.Item>
-      <FilterBar.Item name="name" label="Name">
-        <TextInput placeholder={'Provide monitor name'} defaultValue={defaultFilterState.name.value} />
-      </FilterBar.Item>
-      <FilterBar.Item name="assignedApps" label="Application">
-        <TextInput placeholder={'Provide an application id'} defaultValue={defaultFilterState.assignedApps.value} />
-      </FilterBar.Item>
-      <FilterBar.Item name="tag" label="Tag">
-        <TextInput placeholder={'Provide a tag'} defaultValue={defaultFilterState.tag.value} />
-      </FilterBar.Item>
-      <FilterBar.Item name="location" label="Location">
-        <TextInput placeholder={'Provide a location id'} defaultValue={defaultFilterState.location.value} />
-      </FilterBar.Item>
-    </FilterBar>
+      <div className="filter-bar">
+        <FilterBar onFilterChange={onFiltersChanged}>
+          <FilterBar.Item name="type" label="Type">
+            <Mapper defaultValue={defaultFilterState.type.value}>
+              <Select
+                defaultSelectedId={defaultFilterState.type.value}
+                name="type"
+                id="type-select"
+              >
+                {monitorTypeOptions.map((type: MonitorTypeOption) => (
+                  <SelectOption key={type.id} id={type.id}>
+                    {type.displayName}
+                  </SelectOption>
+                ))}
+              </Select>
+            </Mapper>
+          </FilterBar.Item>
+          <FilterBar.Item name="name" label="Name">
+            <TextInput placeholder={'Provide monitor name'} defaultValue={defaultFilterState.name.value} />
+          </FilterBar.Item>
+          <FilterBar.Item name="assignedApps" label="Application">
+            <TextInput placeholder={'Provide an application id'} defaultValue={defaultFilterState.assignedApps.value} />
+          </FilterBar.Item>
+          <FilterBar.Item name="tag" label="Tag">
+            <TextInput placeholder={'Provide a tag'} defaultValue={defaultFilterState.tag.value} />
+          </FilterBar.Item>
+          <FilterBar.Item name="location" label="Location">
+            <TextInput placeholder={'Provide a location id'} defaultValue={defaultFilterState.location.value} />
+          </FilterBar.Item>
+        </FilterBar>
+      </div>
   );
 }

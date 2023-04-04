@@ -28,9 +28,8 @@ import {Text} from "@dynatrace/strato-components-preview/typography";
 const StyledWrapper = styled.div`
   color: ${Colors.Text.Neutral.Default};
   background: ${Colors.Theme.Background[20]};
-  border-radius: ${Borders.Radius.Container.Default};
-  padding: ${Spacings.Size8};
-  padding-right: ${Spacings.Size20};
+  border-radius: ${Borders.Radius.Surface.Default};
+  padding: ${Spacings.Size16};
   text-decoration: "none";
   display: "block";
 `;
@@ -136,18 +135,20 @@ export const Home = (): JSX.Element => {
 
   return (
     <StyledWrapper ref={containerRef}>
-      <Flex gap={16} flexDirection="column">
-        <TitleBar>
-          <TitleBar.Title>Synthetic monitors</TitleBar.Title>
-          <TitleBar.Suffix>
-            <Flex flexDirection={"row"} alignItems={"baseline"}>
-              {selectedForEdit.length > 0 && <Text>{selectedForEdit.length} {countMonitors()} selected</Text>}
-              <Button variant="accent" onClick={() => setShowFormModal(true)} disabled={selectedForEdit.length === 0}>
-                Edit
-              </Button>
-            </Flex>
-          </TitleBar.Suffix>
-        </TitleBar>
+      <Flex flexDirection="column">
+        <div>
+          <TitleBar>
+            <TitleBar.Title>Synthetic monitors</TitleBar.Title>
+            <TitleBar.Suffix>
+              <Flex flexDirection={"row"} alignItems={"baseline"}>
+                {selectedForEdit.length > 0 && <Text>{selectedForEdit.length} {countMonitors()} selected</Text>}
+                <Button variant="primary" onClick={() => setShowFormModal(true)} disabled={selectedForEdit.length === 0}>
+                  Edit
+                </Button>
+              </Flex>
+            </TitleBar.Suffix>
+          </TitleBar>
+        </div>
         <Grid
           width="100%"
           gridTemplateColumns="repeat(2, 1fr);"

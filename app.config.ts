@@ -4,7 +4,7 @@ const config: CliOptions = {
   environmentUrl: 'https://umsaywsjuo.dev.apps.dynatracelabs.com/',
   app: {
     name: 'Multi Monitor Updater',
-    version: '1.0.4',
+    version: '1.0.5',
     description: 'Verify and update your Synthetic monitor configurations',
     id: 'my.multi.monitor.updater',
     scopes: [
