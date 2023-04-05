@@ -3,7 +3,7 @@ import {
     MonitorCollectionElement,
 } from '@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/monitor-collection-element';
 import Colors from '@dynatrace/strato-design-tokens/colors';
-import {DataTable, TableColumn, TableVariantConfig} from '@dynatrace/strato-components-preview';
+import {DataTable, TableColumn, TableVariantConfig, useCurrentTheme} from '@dynatrace/strato-components-preview';
 import {Text} from '@dynatrace/strato-components-preview/typography';
 import "./monitor-list.css"
 
@@ -69,6 +69,8 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
         setSelectedForEdit(data.map(item => item.original.entityId));
     };
 
+    const theme = useCurrentTheme();
+
     const tableVariant: TableVariantConfig = {
         rowDensity: 'default',
         rowSeparation: 'horizontalDividers',
@@ -79,7 +81,7 @@ export const MonitorList = (props: MonitorListProps): JSX.Element => {
     return (
         (<Fragment>
             {monitors.length > 0 && (
-                <div className={"monitors-datatable"}>
+                <div className={"monitors-datatable-" + theme}>
                     <DataTable
                         columns={columns}
                         data={monitors}

@@ -1,3 +1,7 @@
-.monitors-datatable .strato-table-row:hover {
+.monitors-datatable-light .strato-table-row:hover {
     background-color: #ececf2;
+}
+
+.monitors-datatable-dark .strato-table-row:hover {
+    background-color: #242538;
 }
