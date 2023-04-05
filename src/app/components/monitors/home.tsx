@@ -108,7 +108,7 @@ export const Home = (): JSX.Element => {
                 .sort(compareMonitorNames());
             setIsListLoading(false);
             setFilteredMonitors(monitors);
-            setSelectedForPreview(monitors[0].entityId)
+            setSelectedForPreview(monitors[0]?.entityId)
           }
         });
     }
