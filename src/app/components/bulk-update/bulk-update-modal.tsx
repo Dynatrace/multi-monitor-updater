@@ -3,15 +3,7 @@ import {
     SyntheticMonitor,
 } from '@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/synthetic-monitor';
 import {syntheticMonitorsClient} from '@dynatrace-sdk/client-classic-environment-v1';
-import {
-    Button,
-    Flex,
-    Heading,
-    LoadingIndicator,
-    Modal,
-    OverlayContainer,
-    Text
-} from '@dynatrace/strato-components-preview';
+import {Button, Flex, LoadingIndicator, Modal, OverlayContainer, Text} from '@dynatrace/strato-components-preview';
 import {ParameterUpdateSection} from './parameter-update-section';
 import {getInitialBulkConfig} from '../../utils/display';
 import {
@@ -183,25 +175,25 @@ export const BulkUpdateModal = ({ selectedIds, showFormHandler, setSelectedForPr
               )}
               {initialBulkConfig && (
                   <Fragment>
-                    <Flex flexDirection="row" justifyContent="space-between">
-                      <Heading level={3}>
-                        Update parameters
-                      </Heading>
-                      <Button variant="primary" onClick={saveUpdateHandler}>
-                        Update
-                      </Button>
-                    </Flex>
-                    <Switch name="update-scope" value={saveCurrentOnly} onChange={setSaveCurrentOnly}>
-                      Save changes to the currently selected parameter only
-                    </Switch>
-                    <ParameterUpdateSection
-                        availableConfigParameters={availableConfigParameters}
-                        selectedParam={selectedParam}
-                        setSelectedParam={setSelectedParam}
-                        dispatchParamChangeFn={dispatchParamChange}
-                        initialBulkConfig={initialBulkConfig}
-                        updatedBulkConfig={updatedBulkConfig}
-                    />
+                      <Switch name="update-scope" value={saveCurrentOnly} onChange={setSaveCurrentOnly}>
+                          Save changes to the currently selected parameter only
+                      </Switch>
+                      <ParameterUpdateSection
+                          availableConfigParameters={availableConfigParameters}
+                          selectedParam={selectedParam}
+                          setSelectedParam={setSelectedParam}
+                          dispatchParamChangeFn={dispatchParamChange}
+                          initialBulkConfig={initialBulkConfig}
+                          updatedBulkConfig={updatedBulkConfig}
+                      />
+                      <Flex flexDirection="row" justifyContent="flex-start">
+                          <Button variant="primary" onClick={saveUpdateHandler}>
+                              Update
+                          </Button>
+                          <Button variant="minimal"  onClick={() => {dismissHandler()}}>
+                              Cancel
+                          </Button>
+                      </Flex>
                   </Fragment>
               )}
             </Flex>)}
@@ -211,7 +203,7 @@ export const BulkUpdateModal = ({ selectedIds, showFormHandler, setSelectedForPr
                  show={showProgressModal}
                  onDismiss={dismissHandler}
                  footer={footer}
-                 size={"medium"}
+                 size={"small"}
           >
             <UpdateProgressAndResult updateState={updateState} requestCount={fetchedConfigs.length}/>
           </Modal>

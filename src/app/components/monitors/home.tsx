@@ -185,7 +185,7 @@ export const Home = (): JSX.Element => {
           </Grid>
         </Grid>
         <OverlayContainer>
-          <Modal title="Bulk update" size="medium" dismissible show={showFormModal} onDismiss={() => setShowFormModal(false)}>
+          <Modal title="Bulk update" size="small" dismissible show={showFormModal} onDismiss={() => setShowFormModal(false)}>
             <BulkUpdateModal selectedIds={selectedForEdit} showFormHandler={setShowFormModal} setSelectedForPreview={setSelectedForPreview} />
           </Modal>
         </OverlayContainer>

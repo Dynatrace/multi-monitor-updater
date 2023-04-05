@@ -5,6 +5,7 @@ import {Flex} from '@dynatrace/strato-components-preview/layouts-core';
 import Colors from '@dynatrace/strato-design-tokens/colors';
 import Spacings from '@dynatrace/strato-design-tokens/spacings';
 import styled from 'styled-components';
+import {ExpandableText} from "@dynatrace/strato-components-preview";
 
 const InfoBox = styled.div`
   color: ${Colors.Text.Neutral.Default};
@@ -42,15 +43,17 @@ export const ParameterUpdateDescription = ({ selectedParam }: { selectedParam: C
           </Text>
           <Text textStyle="small">
             "*" indicates that at least one configuration has values other than the common ones.
+            <ExpandableText>
+              <Text textStyle="small">
+                The list can be modified as follows:
+              </Text>
+              <List ordered={false}>
+                <Text textStyle="small">enter one or more new values to add them to all the selected configurations</Text>
+                <Text textStyle="small">delete one or more of the common values to remove them from all the selected configurations</Text>
+                <Text textStyle="small">delete "*" (if present) to remove from all the selected configurations any values different than the ones displayed here.</Text>
+              </List>
+            </ExpandableText>
           </Text>
-          <Text textStyle="small">
-            The list can be modified as follows:
-          </Text>
-          <List ordered={false}>
-            <Text textStyle="small">enter one or more new values to add them to all the selected configurations</Text>
-            <Text textStyle="small">delete one or more of the common values to remove them from all the selected configurations</Text>
-            <Text textStyle="small">delete "*" (if present) to remove from all the selected configurations any values different than the ones displayed here.</Text>
-          </List>
         </Fragment>
       )}
     </Flex>
