@@ -39,3 +39,8 @@ Thumbs.db
 # DT-APP files
 .dt-app/*
 !/.dt-app/deployment.json
+
+
+# DT-APP files
+.dt-app/*
+!/.dt-app/deployment.json
