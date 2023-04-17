@@ -1,20 +1,13 @@
-import { SyntheticMonitor } from "@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/synthetic-monitor";
-import {
-  BulkConfig,
-  ConfigParam,
-  InitialBulkConfig,
-  TagParam,
-  ValidationResult,
-  Wildcard,
-} from "./models";
-import { empty, keyValueSeparator, wildcard } from "./constants";
-import { TagWithSourceInfo } from "@dynatrace-sdk/client-classic-environment-v1";
+import { SyntheticMonitor } from '@dynatrace-sdk/client-classic-environment-v1/types/packages/client/classic-environment-v1/src/lib/models/synthetic-monitor';
+import { BulkConfig, ConfigParam, InitialBulkConfig, TagParam, ValidationResult, Wildcard } from './models';
+import { empty, keyValueSeparator, wildcard } from './constants';
+import { TagWithSourceInfo } from '@dynatrace-sdk/client-classic-environment-v1';
 
 /** Helpers for displaying selected configuration parameters in the editor. */
-const getCommonListItems: (
-  itemToCount: Map<string, number>,
-  totalCount: number
-) => Array<string> = (itemToCount, totalCount) => {
+const getCommonListItems: (itemToCount: Map<string, number>, totalCount: number) => Array<string> = (
+  itemToCount,
+  totalCount,
+) => {
   const commonItems: string[] = [];
   let otherThanCommonItemsPresent = false;
   itemToCount.forEach((value: number, key: string) => {
@@ -31,27 +24,18 @@ const getCommonListItems: (
   return commonItems;
 };
 
-const updateItemsCount: (
-  items: Array<string>,
-  itemToCount: Map<string, number>
-) => void = (items, itemToCount) => {
+const updateItemsCount: (items: Array<string>, itemToCount: Map<string, number>) => void = (items, itemToCount) => {
   items.forEach((item) => {
     const currentCount = itemToCount.get(item);
     itemToCount.set(item, currentCount ? currentCount + 1 : 1);
   });
 };
 
-const getUserTagsAsStrings: (tags: TagWithSourceInfo[]) => Array<string> = (
-  tags
-) => {
-  return tags
-    .filter((tag) => tag.source === "USER")
-    .map((tag) => `${tag.key}${keyValueSeparator}${tag.value ?? ""}`);
+const getUserTagsAsStrings: (tags: TagWithSourceInfo[]) => Array<string> = (tags) => {
+  return tags.filter((tag) => tag.source === 'USER').map((tag) => `${tag.key}${keyValueSeparator}${tag.value ?? ''}`);
 };
 
-const stringsToTags: (
-  tagStrings: Array<string | Wildcard>
-) => Array<TagParam | Wildcard> = (tagStrings) => {
+const stringsToTags: (tagStrings: Array<string | Wildcard>) => Array<TagParam | Wildcard> = (tagStrings) => {
   return tagStrings.map((str) => {
     if (str !== wildcard) {
       const [key, value] = str.split(keyValueSeparator);
@@ -68,9 +52,7 @@ const stringsToTags: (
  * (with specific values where properties are equal for all selected configurations
  * and wildcard otherwise)
  */
-export const getInitialBulkConfig: (
-  fetchedConfigs: SyntheticMonitor[]
-) => InitialBulkConfig = (fetchedConfigs) => {
+export const getInitialBulkConfig: (fetchedConfigs: SyntheticMonitor[]) => InitialBulkConfig = (fetchedConfigs) => {
   let sameFrequency = true;
   let sameGlobalOutage = true;
   let sameConsecutiveRuns = true;
@@ -83,16 +65,12 @@ export const getInitialBulkConfig: (
   const baseOutageHandling = baseConfig?.anomalyDetection?.outageHandling;
   fetchedConfigs.forEach((config) => {
     const outageHandling = config.anomalyDetection?.outageHandling;
-    sameGlobalOutage =
-      sameGlobalOutage &&
-      outageHandling?.globalOutage === baseOutageHandling?.globalOutage;
+    sameGlobalOutage = sameGlobalOutage && outageHandling?.globalOutage === baseOutageHandling?.globalOutage;
     sameConsecutiveRuns =
       sameConsecutiveRuns &&
-      outageHandling?.globalOutagePolicy?.consecutiveRuns ===
-        baseOutageHandling?.globalOutagePolicy?.consecutiveRuns;
+      outageHandling?.globalOutagePolicy?.consecutiveRuns === baseOutageHandling?.globalOutagePolicy?.consecutiveRuns;
     updateItemsCount(config.locations, locationToCount);
-    sameFrequency =
-      sameFrequency && config.frequencyMin === baseConfig.frequencyMin;
+    sameFrequency = sameFrequency && config.frequencyMin === baseConfig.frequencyMin;
     updateItemsCount(config.manuallyAssignedApps, applicationToCount);
     updateItemsCount(getUserTagsAsStrings(config.tags), tagToCount);
   });
@@ -100,14 +78,9 @@ export const getInitialBulkConfig: (
   return {
     frequencyMin: sameFrequency ? baseConfig?.frequencyMin : wildcard,
     locations: getCommonListItems(locationToCount, fetchedConfigs.length),
-    manuallyAssignedApps: getCommonListItems(
-      applicationToCount,
-      fetchedConfigs.length
-    ),
+    manuallyAssignedApps: getCommonListItems(applicationToCount, fetchedConfigs.length),
     outageHandling: {
-      globalOutage: sameGlobalOutage
-        ? baseOutageHandling?.globalOutage ?? empty
-        : wildcard,
+      globalOutage: sameGlobalOutage ? baseOutageHandling?.globalOutage ?? empty : wildcard,
       globalOutagePolicy: {
         consecutiveRuns: sameConsecutiveRuns
           ? baseOutageHandling?.globalOutagePolicy?.consecutiveRuns ?? empty
@@ -118,38 +91,25 @@ export const getInitialBulkConfig: (
   };
 };
 
-const isOfType = <T extends "string" | "number" | "boolean">(
-  value: unknown,
-  type: T
-): boolean => {
+const isOfType = <T extends 'string' | 'number' | 'boolean'>(value: unknown, type: T): boolean => {
   return typeof value === type;
 };
 
-const isObjectWithKey = <K extends string>(
-  value: unknown,
-  key: K
-): value is Record<K, unknown> => {
-  return value !== null && typeof value === "object" && key in value;
+const isObjectWithKey = <K extends string>(value: unknown, key: K): value is Record<K, unknown> => {
+  return value !== null && typeof value === 'object' && key in value;
 };
 
 const frequencyTypeValid: (value: unknown) => boolean = (frequencyMin) => {
-  return isOfType(frequencyMin, "number") || frequencyMin === wildcard;
+  return isOfType(frequencyMin, 'number') || frequencyMin === wildcard;
 };
 
 const outageHandlingTypesValid: (value: unknown) => boolean = (value) => {
-  if (
-    isObjectWithKey(value, "globalOutage") &&
-    isObjectWithKey(value, "globalOutagePolicy")
-  ) {
+  if (isObjectWithKey(value, 'globalOutage') && isObjectWithKey(value, 'globalOutagePolicy')) {
     const { globalOutage, globalOutagePolicy } = value;
-    const globalOutageValid =
-      isOfType(globalOutage, "boolean") || globalOutage === wildcard;
-    if (isObjectWithKey(globalOutagePolicy, "consecutiveRuns")) {
+    const globalOutageValid = isOfType(globalOutage, 'boolean') || globalOutage === wildcard;
+    if (isObjectWithKey(globalOutagePolicy, 'consecutiveRuns')) {
       const runCount = globalOutagePolicy.consecutiveRuns;
-      const consecutiveRunsValid =
-        isOfType(runCount, "number") ||
-        runCount === wildcard ||
-        runCount === empty;
+      const consecutiveRunsValid = isOfType(runCount, 'number') || runCount === wildcard || runCount === empty;
 
       return globalOutageValid && consecutiveRunsValid;
     }
@@ -159,7 +119,7 @@ const outageHandlingTypesValid: (value: unknown) => boolean = (value) => {
 };
 
 const arrayTypesValid: (items: unknown) => boolean = (items) => {
-  return Array.isArray(items) && items.every((id) => isOfType(id, "string"));
+  return Array.isArray(items) && items.every((id) => isOfType(id, 'string'));
 };
 
 const tagTypesValid: (items: unknown) => boolean | undefined = (items) => {
@@ -168,8 +128,7 @@ const tagTypesValid: (items: unknown) => boolean | undefined = (items) => {
     items.every(
       (item) =>
         item === wildcard ||
-        (isOfType(item.key, "string") &&
-          (isOfType(item.value, "string") || item.value === undefined))
+        (isOfType(item.key, 'string') && (isOfType(item.value, 'string') || item.value === undefined)),
     )
   );
 };
@@ -180,57 +139,49 @@ const tagTypesValid: (items: unknown) => boolean | undefined = (items) => {
  * @param content Content displayed in the editor
  * @param actionType Selected parameter
  */
-export const validateParamType: (
-  content: string,
-  actionType: ConfigParam
-) => ValidationResult = (content, actionType) => {
+export const validateParamType: (content: string, actionType: ConfigParam) => ValidationResult = (
+  content,
+  actionType,
+) => {
   try {
     const parsedContent = JSON.parse(content);
-    if (
-      parsedContent === null ||
-      typeof parsedContent !== "object" ||
-      Array.isArray(parsedContent)
-    ) {
+    if (parsedContent === null || typeof parsedContent !== 'object' || Array.isArray(parsedContent)) {
       return {
-        error: "Content should be a JSON object with appropriate properties.",
+        error: 'Content should be a JSON object with appropriate properties.',
       };
     }
     switch (actionType) {
       case ConfigParam.FREQUENCY:
-        return isObjectWithKey(parsedContent, "frequencyMin") &&
-          frequencyTypeValid(parsedContent.frequencyMin)
+        return isObjectWithKey(parsedContent, 'frequencyMin') && frequencyTypeValid(parsedContent.frequencyMin)
           ? { validatedConfig: parsedContent as BulkConfig }
           : { error: `Frequency should be a number or "${wildcard}".` };
       case ConfigParam.OUTAGE_HANDLING:
-        return isObjectWithKey(parsedContent, "outageHandling") &&
+        return isObjectWithKey(parsedContent, 'outageHandling') &&
           outageHandlingTypesValid(parsedContent.outageHandling)
           ? { validatedConfig: parsedContent as BulkConfig }
           : {
-              error: `Global outage should be true, false or "${wildcard}" and consecutive runs parameter 
+              error: `Global outage should be true, false or "${wildcard}" and consecutive runs parameter
               should be a number, "${wildcard}" or "${empty}".`,
             };
       case ConfigParam.LOCATIONS:
-        return isObjectWithKey(parsedContent, "locations") &&
-          arrayTypesValid(parsedContent.locations)
+        return isObjectWithKey(parsedContent, 'locations') && arrayTypesValid(parsedContent.locations)
           ? { validatedConfig: parsedContent as BulkConfig }
-          : { error: "All location ids should be provided as strings" };
+          : { error: 'All location ids should be provided as strings' };
       case ConfigParam.MANUALLY_ASSIGNED_APPS:
-        return isObjectWithKey(parsedContent, "manuallyAssignedApps") &&
+        return isObjectWithKey(parsedContent, 'manuallyAssignedApps') &&
           arrayTypesValid(parsedContent.manuallyAssignedApps)
           ? { validatedConfig: parsedContent as BulkConfig }
-          : { error: "All application ids should be provided as strings" };
+          : { error: 'All application ids should be provided as strings' };
       case ConfigParam.TAGS:
-        return isObjectWithKey(parsedContent, "tags") &&
-          tagTypesValid(parsedContent.tags)
+        return isObjectWithKey(parsedContent, 'tags') && tagTypesValid(parsedContent.tags)
           ? { validatedConfig: parsedContent as BulkConfig }
           : {
-              error:
-                "All tags should contain a string key. If a value is provided it should also be a string.",
+              error: 'All tags should contain a string key. If a value is provided it should also be a string.',
             };
       default:
         return {};
     }
   } catch (error) {
-    return { error: "Could not parse JSON." };
+    return { error: 'Could not parse JSON.' };
   }
 };

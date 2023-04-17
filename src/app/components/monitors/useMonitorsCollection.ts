@@ -1,9 +1,6 @@
-import { FilterItemValues } from "@dynatrace/strato-components-preview";
-import { useQuery } from "@tanstack/react-query";
-import {
-  MonitorCollectionElement,
-  syntheticMonitorsClient,
-} from "@dynatrace-sdk/client-classic-environment-v1";
+import { FilterItemValues } from '@dynatrace/strato-components-preview';
+import { useQuery } from '@tanstack/react-query';
+import { MonitorCollectionElement, syntheticMonitorsClient } from '@dynatrace-sdk/client-classic-environment-v1';
 
 interface MonitorsQueryConfig {
   type?: string;
@@ -12,26 +9,23 @@ interface MonitorsQueryConfig {
   location?: string;
 }
 
-function createMonitorsConfig(
-  filterItemValues: FilterItemValues
-): MonitorsQueryConfig {
+function createMonitorsConfig(filterItemValues: FilterItemValues): MonitorsQueryConfig {
   const config: MonitorsQueryConfig = {};
   Object.entries(filterItemValues).forEach(([key, { value }]) => {
     switch (key) {
-      case "type":
+      case 'type':
         const filterValues = value as string[];
-        config.type = filterValues[0] !== "ALL" ? filterValues[0] : undefined;
+        config.type = filterValues[0] !== 'ALL' ? filterValues[0] : undefined;
         break;
-      case "location":
+      case 'location':
         const location = value as string;
         config.location = location?.length > 0 ? location : undefined;
         break;
-      case "assignedApps":
+      case 'assignedApps':
         const assignedApps = value as string;
-        config.assignedApps =
-          assignedApps?.length > 0 ? [assignedApps] : undefined;
+        config.assignedApps = assignedApps?.length > 0 ? [assignedApps] : undefined;
         break;
-      case "tag":
+      case 'tag':
         const tag = value as string[]; // TODO: this should be an array of tags on the API but i don't see this handled somewhere
         config.tag = tag?.length > 0 ? tag : undefined;
         break;
@@ -48,12 +42,12 @@ async function getMonitorsCollection(config: MonitorsQueryConfig) {
 
 export function useMonitorsCollection(
   filterItemValues: FilterItemValues,
-  onSuccess: (data: MonitorCollectionElement[]) => void
+  onSuccess: (data: MonitorCollectionElement[]) => void,
 ) {
   const config = createMonitorsConfig(filterItemValues);
 
   return useQuery({
-    queryKey: ["monitors", config],
+    queryKey: ['monitors', config],
     queryFn: () => getMonitorsCollection(config),
     onSuccess,
   });

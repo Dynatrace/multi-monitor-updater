@@ -1,21 +1,12 @@
-import React, { Fragment, useRef, useState } from "react";
-import { Flex } from "@dynatrace/strato-components-preview";
-import { CodeEditor } from "@dynatrace/strato-components-preview/editors";
-import {
-  FormField,
-  Select,
-  SelectOption,
-} from "@dynatrace/strato-components-preview/forms";
-import {
-  BulkConfig,
-  ConfigParam,
-  ConfigParamChangeAction,
-  InitialBulkConfig,
-} from "../../utils/models";
-import { ParameterUpdateDescription } from "./ParameterUpdateDescription";
-import { validateParamType } from "../../utils/display";
-import { Text } from "@dynatrace/strato-components-preview/typography";
-import Colors from "@dynatrace/strato-design-tokens/colors";
+import React, { Fragment, useRef, useState } from 'react';
+import { Flex } from '@dynatrace/strato-components-preview';
+import { CodeEditor } from '@dynatrace/strato-components-preview/editors';
+import { FormField, Select, SelectOption } from '@dynatrace/strato-components-preview/forms';
+import { BulkConfig, ConfigParam, ConfigParamChangeAction, InitialBulkConfig } from '../../utils/models';
+import { ParameterUpdateDescription } from './ParameterUpdateDescription';
+import { validateParamType } from '../../utils/display';
+import { Text } from '@dynatrace/strato-components-preview/typography';
+import Colors from '@dynatrace/strato-design-tokens/colors';
 
 interface ParamUpdateSectionProps {
   availableConfigParameters: ConfigParam[];
@@ -47,16 +38,14 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
           wrapper.outageHandling = initialBulkConfig.outageHandling;
           break;
         default:
-          return "";
+          return '';
       }
       return JSON.stringify(wrapper, null, 2);
     }
-    return "";
+    return '';
   };
 
-  const [editorContent, setEditorContent] = useState<string>(() =>
-    getInitialContent(selectedParam)
-  );
+  const [editorContent, setEditorContent] = useState<string>(() => getInitialContent(selectedParam));
   const [error, setError] = useState<string | undefined>(undefined);
 
   const timeoutId = useRef<number | undefined>(undefined);
@@ -69,10 +58,7 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
     timeoutId.current = window.setTimeout(() => {
       const actionType = selectedParam === null ? null : selectedParam[0];
       if (actionType !== null) {
-        const { validatedConfig, error } = validateParamType(
-          content,
-          actionType
-        );
+        const { validatedConfig, error } = validateParamType(content, actionType);
         setError(error);
         if (validatedConfig) {
           dispatchParamChangeFn({
@@ -90,21 +76,16 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
     const currentKey = selectedKeys[0];
     switch (currentKey) {
       case ConfigParam.FREQUENCY:
-        wrapper.frequencyMin =
-          updatedBulkConfig.frequencyMin ?? initialBulkConfig.frequencyMin;
+        wrapper.frequencyMin = updatedBulkConfig.frequencyMin ?? initialBulkConfig.frequencyMin;
         break;
       case ConfigParam.LOCATIONS:
-        wrapper.locations =
-          updatedBulkConfig.locations ?? initialBulkConfig.locations;
+        wrapper.locations = updatedBulkConfig.locations ?? initialBulkConfig.locations;
         break;
       case ConfigParam.MANUALLY_ASSIGNED_APPS:
-        wrapper.manuallyAssignedApps =
-          updatedBulkConfig.manuallyAssignedApps ??
-          initialBulkConfig.manuallyAssignedApps;
+        wrapper.manuallyAssignedApps = updatedBulkConfig.manuallyAssignedApps ?? initialBulkConfig.manuallyAssignedApps;
         break;
       case ConfigParam.OUTAGE_HANDLING:
-        wrapper.outageHandling =
-          updatedBulkConfig.outageHandling ?? initialBulkConfig.outageHandling;
+        wrapper.outageHandling = updatedBulkConfig.outageHandling ?? initialBulkConfig.outageHandling;
         break;
       case ConfigParam.TAGS:
         wrapper.tags = updatedBulkConfig.tags ?? initialBulkConfig.tags;
@@ -117,11 +98,11 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
 
   return (
     <Fragment>
-      <FormField label="Select configuration parameter">
+      <FormField label='Select configuration parameter'>
         {
           <Select
-            name="config-parameter"
-            id="config-parameter-select"
+            name='config-parameter'
+            id='config-parameter-select'
             selectedId={selectedParam}
             onChange={selectedConfigParamChangeHandler}
           >
@@ -134,19 +115,9 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
         }
       </FormField>
       <Flex flexItem height={300}>
-        <CodeEditor
-          language="json"
-          lineWrap
-          fullHeight
-          value={editorContent}
-          onChange={editorContentChangeHandler}
-        />
+        <CodeEditor language='json' lineWrap fullHeight value={editorContent} onChange={editorContentChangeHandler} />
       </Flex>
-      {error && (
-        <Text style={{ color: Colors.Text.Critical.Default }}>
-          Error: {error}
-        </Text>
-      )}
+      {error && <Text style={{ color: Colors.Text.Critical.Default }}>Error: {error}</Text>}
       <ParameterUpdateDescription selectedParam={selectedParam?.[0]} />
     </Fragment>
   );

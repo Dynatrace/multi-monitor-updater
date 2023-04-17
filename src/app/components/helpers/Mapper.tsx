@@ -1,5 +1,5 @@
-import { ReactElement, cloneElement } from "react";
-import { mergeProps } from "@react-aria/utils";
+import { ReactElement, cloneElement } from 'react';
+import { mergeProps } from '@react-aria/utils';
 
 type MappingProps = {
   children: ReactElement;

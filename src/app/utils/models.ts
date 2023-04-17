@@ -1,21 +1,21 @@
-export type Wildcard = "*";
+export type Wildcard = '*';
 
-export type DisplayMode = "same-type" | "mixed";
+export type DisplayMode = 'same-type' | 'mixed';
 
 /** All configuration parameters available for bulk update */
 export const enum ConfigParam {
-  LOCATIONS = "locations",
-  FREQUENCY = "frequency",
-  MANUALLY_ASSIGNED_APPS = "manuallyAssignedApps",
-  OUTAGE_HANDLING = "anomalyDetection.outageHandling",
-  TAGS = "tags",
-  OTHER = "other",
+  LOCATIONS = 'locations',
+  FREQUENCY = 'frequency',
+  MANUALLY_ASSIGNED_APPS = 'manuallyAssignedApps',
+  OUTAGE_HANDLING = 'anomalyDetection.outageHandling',
+  TAGS = 'tags',
+  OTHER = 'other',
 }
 
 export type OutageHandlingParam = {
-  globalOutage: boolean | Wildcard | "";
+  globalOutage: boolean | Wildcard | '';
   globalOutagePolicy: {
-    consecutiveRuns: number | Wildcard | "";
+    consecutiveRuns: number | Wildcard | '';
   };
 };
 

@@ -1,9 +1,6 @@
-import {
-  syntheticMonitorsClient,
-  SyntheticMonitorUpdate,
-} from "@dynatrace-sdk/client-classic-environment-v1";
-import { useMutation } from "@tanstack/react-query";
-import { useCallback, useState } from "react";
+import { syntheticMonitorsClient, SyntheticMonitorUpdate } from '@dynatrace-sdk/client-classic-environment-v1';
+import { useMutation } from '@tanstack/react-query';
+import { useCallback, useState } from 'react';
 
 async function replaceMonitor(update: BulkUpdate) {
   return syntheticMonitorsClient.replaceMonitor({
@@ -24,9 +21,7 @@ function useReplaceMonitor() {
 }
 
 export function useBulkUpdate() {
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "error" | "success"
-  >("idle");
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error' | 'success'>('idle');
   const [progress, setProgress] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -34,23 +29,23 @@ export function useBulkUpdate() {
   const mutate = useCallback(
     (updates: Array<BulkUpdate>) => {
       setTotal(updates.length);
-      setStatus("loading");
+      setStatus('loading');
       const promises = updates.map((update) => {
         return mutation.mutateAsync(update, {
           onSettled: () => setProgress((prev) => prev + 1),
           onError: () => {
-            setStatus("error");
+            setStatus('error');
           },
         });
       });
       Promise.allSettled(promises).then((results) => {
-        if (status !== "error") {
-          setStatus("success");
+        if (status !== 'error') {
+          setStatus('success');
         }
         return results;
       });
     },
-    [mutation, status]
+    [mutation, status],
   );
 
   return { progress, status, mutate, total };
