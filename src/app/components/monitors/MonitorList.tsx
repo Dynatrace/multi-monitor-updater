@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo } from "react";
-import type { MonitorCollectionElement } from "@dynatrace-sdk/client-classic-environment-v1";
+import React, { useCallback, useMemo } from 'react';
+import type { MonitorCollectionElement } from '@dynatrace-sdk/client-classic-environment-v1';
 import {
   Button,
   DataTable,
@@ -8,7 +8,7 @@ import {
   TableColumn,
   TableVariantConfig,
   Text,
-} from "@dynatrace/strato-components-preview";
+} from '@dynatrace/strato-components-preview';
 
 interface MonitorListProps {
   monitors?: MonitorCollectionElement[];
@@ -36,27 +36,23 @@ export const MonitorList = (props: MonitorListProps) => {
     (event) => {
       onSelectedForPreviewChange(event.currentTarget.dataset.id);
     },
-    [onSelectedForPreviewChange]
+    [onSelectedForPreviewChange],
   );
 
   /** table columns configuration */
   const columns = useMemo<TableColumn[]>(
     () => [
       {
-        header: "Monitor name",
-        id: "name",
-        accessor: "name",
-        columnType: "text",
+        header: 'Monitor name',
+        id: 'name',
+        accessor: 'name',
+        columnType: 'text',
         ratioWidth: 4,
         cell: ({ value, row }) => {
           const entityId = row.original.entityId;
-          const color = entityId === selectedForPreview ? "primary" : "neutral";
+          const color = entityId === selectedForPreview ? 'primary' : 'neutral';
           return (
-            <Button
-              color={color}
-              data-id={entityId}
-              onClick={onSelectedForPreviewHandler}
-            >
+            <Button color={color} data-id={entityId} onClick={onSelectedForPreviewHandler}>
               {value}
             </Button>
           );
@@ -64,25 +60,23 @@ export const MonitorList = (props: MonitorListProps) => {
         lineWrap: true,
       },
       {
-        header: "Type",
-        id: "type",
-        accessor: (row) => (row.type === "BROWSER" ? "Browser" : row.type),
-        columnType: "text",
+        header: 'Type',
+        id: 'type',
+        accessor: (row) => (row.type === 'BROWSER' ? 'Browser' : row.type),
+        columnType: 'text',
         ratioWidth: 1,
       },
     ],
-    [onSelectedForPreviewHandler, selectedForPreview]
+    [onSelectedForPreviewHandler, selectedForPreview],
   );
 
-  const rowSelectionChangedHandler = (
-    data: Array<{ original: MonitorCollectionElement }>
-  ) => {
-    onSelectedForEditChange(data.map((item) => item.original.entityId));
+  const rowSelectionChangedHandler = (data: Array<MonitorCollectionElement>) => {
+    onSelectedForEditChange(data.map((item) => item.entityId));
   };
 
   const tableVariant: TableVariantConfig = {
-    rowDensity: "default",
-    rowSeparation: "horizontalDividers",
+    rowDensity: 'default',
+    rowSeparation: 'horizontalDividers',
     verticalDividers: false,
     contained: true,
   };
@@ -97,19 +91,15 @@ export const MonitorList = (props: MonitorListProps) => {
       data={monitors}
       sortable
       selectableRows
-      sortBy={{ id: "name", desc: false }}
+      sortBy={{ id: 'name', desc: false }}
       variant={tableVariant}
       onRowSelectionChange={rowSelectionChangedHandler}
     >
-      <DataTable.Pagination
-        pageSize={pageSize}
-        onPageSizeChange={onPageSizeChange}
-        onPageChange={onPageChange}
-      />
+      <DataTable.Pagination pageSize={pageSize} onPageSizeChange={onPageSizeChange} onPageChange={onPageChange} />
     </DataTable>
   ) : (
     <Flex paddingTop={8}>
-      <Text textStyle="base-emphasized">No monitors found.</Text>
+      <Text textStyle='base-emphasized'>No monitors found.</Text>
     </Flex>
   );
 };
