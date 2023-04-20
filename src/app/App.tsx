@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Page, AppHeader, Flex, Heading, List, Text, TitleBar } from '@dynatrace/strato-components-preview';
-import { Spacings } from '@dynatrace/strato-design-tokens';
-import { Home } from './components/monitors/Home';
-import { SideBarContent } from './components/SideBarContent';
-import { WhatsNext } from './components/WhatsNext';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React, {useState} from 'react';
+import {AppHeader, Flex, Heading, List, Page, Text, TitleBar} from '@dynatrace/strato-components-preview';
+import {Spacings} from '@dynatrace/strato-design-tokens';
+import {Home} from './components/monitors/Home';
+import {SideBarContent} from './components/SideBarContent';
+import {WhatsNext} from './components/WhatsNext';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -32,17 +32,17 @@ export const App = () => {
             <Flex maxWidth={'80vw'} gap={16} flexDirection='column'>
               <TitleBar>
                 <TitleBar.Title>
-                  <Heading as='h1'>Multi Monitor Updater</Heading>
+                  <Heading as='h1'>Multi-Monitor Updater</Heading>
                 </TitleBar.Title>
-                <TitleBar.Suffix>
+                <TitleBar.Action>
                   <img
                     src='./assets/logo.png'
-                    alt='Multi Monitor Updater icon'
+                    alt='Multi-Monitor Updater icon'
                     style={{
                       height: Spacings.Size64,
                     }}
                   />
-                </TitleBar.Suffix>
+                </TitleBar.Action>
                 <TitleBar.Subtitle>
                   With the help of this tutorial app you'll be able to quickly and easily build your own app that uses
                   synthetic configurations. This is also a fully functional app that allows bulk updates of synthetic

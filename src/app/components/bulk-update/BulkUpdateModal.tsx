@@ -1,14 +1,14 @@
-import React, { Fragment, useMemo, useReducer, useState } from 'react';
-import { SyntheticMonitor } from '@dynatrace-sdk/client-classic-environment-v1';
-import { Button, Flex, LoadingIndicator, ProgressBar, Text } from '@dynatrace/strato-components-preview';
-import { ParameterUpdateSection } from './ParameterUpdateSection';
-import { getInitialBulkConfig } from '../../utils/display';
-import { BulkConfig, ConfigParam, ConfigParamChangeAction, InitialBulkConfig } from '../../utils/models';
-import { getUpdateDto, getUpdateDtoForCurrentSelection } from '../../utils/update';
-import { Switch } from '@dynatrace/strato-components-preview/forms';
-import { useMonitors } from '../monitors/useMonitors';
-import { progressLabel, progressVariant } from './progress-helpers';
-import { useBulkUpdate } from './useBulkUpdate';
+import React, {Fragment, useMemo, useReducer, useState} from 'react';
+import {SyntheticMonitor} from '@dynatrace-sdk/client-classic-environment-v1';
+import {Button, Flex, LoadingIndicator, ProgressBar, Text} from '@dynatrace/strato-components-preview';
+import {ParameterUpdateSection} from './ParameterUpdateSection';
+import {getInitialBulkConfig} from '../../utils/display';
+import {BulkConfig, ConfigParam, ConfigParamChangeAction, InitialBulkConfig} from '../../utils/models';
+import {getUpdateDto, getUpdateDtoForCurrentSelection} from '../../utils/update';
+import {Switch} from '@dynatrace/strato-components-preview/forms';
+import {useMonitors} from '../monitors/useMonitors';
+import {progressLabel, progressVariant} from './progress-helpers';
+import {useBulkUpdate} from './useBulkUpdate';
 
 const commonConfigParameters: ConfigParam[] = [ConfigParam.OUTAGE_HANDLING, ConfigParam.LOCATIONS, ConfigParam.TAGS];
 
@@ -124,12 +124,12 @@ export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps
       ) : null}
       <Flex flexDirection='row' justifyContent='flex-start'>
         {updateStatus === 'success' || updateStatus === 'error' ? (
-          <Button data-testid='close-modal-button' color='primary' onClick={onDismiss}>
+          <Button data-testid='close-modal-button' color='primary' variant={"accent"} onClick={onDismiss}>
             Close
           </Button>
         ) : (
           <>
-            <Button color='primary' disabled={!isSuccess || updateStatus === 'loading'} onClick={saveUpdateHandler}>
+            <Button color='primary' variant={"accent"} disabled={!isSuccess || updateStatus === 'loading'} onClick={saveUpdateHandler}>
               Update
             </Button>
             <Button color='neutral' onClick={onDismiss}>
