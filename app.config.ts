@@ -1,4 +1,4 @@
-import type {CliOptions} from '@dynatrace/dt-app';
+import type { CliOptions } from '@dynatrace/dt-app';
 
 const config: CliOptions = {
   environmentUrl: 'https://umsaywsjuo.dev.apps.dynatracelabs.com/',

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {AppHeader, Flex, Heading, List, Page, Text, TitleBar} from '@dynatrace/strato-components-preview';
-import {Spacings} from '@dynatrace/strato-design-tokens';
-import {Home} from './components/monitors/Home';
-import {SideBarContent} from './components/SideBarContent';
-import {WhatsNext} from './components/WhatsNext';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { AppHeader, Flex, Heading, List, Page, Text, TitleBar } from '@dynatrace/strato-components-preview';
+import { Spacings } from '@dynatrace/strato-design-tokens';
+import { Home } from './components/monitors/Home';
+import { SideBarContent } from './components/SideBarContent';
+import { WhatsNext } from './components/WhatsNext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Create a client
 const queryClient = new QueryClient({
