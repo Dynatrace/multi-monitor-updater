@@ -1,4 +1,31 @@
-# Getting Started with your Dynatrace App
+# Sample App “Multi Monitor Updater”
+
+The **Multi Monitor Updater** is a sample app for the [Dynatrace Platform](https://www.dynatrace.com/platform/), specifically the [AppEngine](https://www.dynatrace.com/platform/appengine/). 
+
+It shows you how to
+* Use Dynatrace API and core UI components.
+* Bulk updates of synthetic configurations
+
+
+## Try out
+
+You can try out this app by installing it from the Dynatrace Hub.
+
+
+## Documentation
+
+You can find documentation for all tools, SDKs and features used in this app from [Developer Portal](https://developer.dynatrace.com/preview/sample-apps/multi-monitor-updater/).
+
+
+## Getting Started
+Our sample apps give a good overview of how Dynatrace Apps can help solve specific use cases. However, we recommend starting your learning journey through our [Get started with the Dynatrace platform](https://developer.dynatracelabs.com/getting-started/tutorial/) tutorial. In the tutorial, you'll learn all aspects of the development process by incorporating our [SDKs](https://developer.dynatracelabs.com/reference/sdks/), the [Strato design system](https://developer.dynatracelabs.com/reference/design-system/), and tools such as our [Dynatrace App Toolkit](https://developer.dynatracelabs.com/reference/cli/).
+
+
+## Support
+
+Please note that the app is intended mostly for educational purposes. It aims to illustrate the main concepts of app development and should be easy to understand. Therefor it provides only limited functionality and does not always cover all edge cases. You can use the app as a starting point for your own development. It is covered under the “light support” provisions of the Dynatrace terms and conditions.
+
+## Getting Started with your Dynatrace App
 
 This project was bootstrapped with DTP CLI.
 
