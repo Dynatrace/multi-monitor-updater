@@ -1,4 +1,4 @@
-# Sample App “Multi Monitor Updater”
+# Sample App “Multi-Monitor Updater”
 
 The **Multi Monitor Updater** is a sample app for the [Dynatrace Platform](https://www.dynatrace.com/platform/), specifically the [AppEngine](https://www.dynatrace.com/platform/appengine/). 
 
