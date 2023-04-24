@@ -4,7 +4,7 @@ The **Multi Monitor Updater** is a sample app for the [Dynatrace Platform](https
 
 It shows you how to
 * Use Dynatrace API and core UI components.
-* Bulk updates of synthetic configurations
+* Make bulk updates of synthetic configurations
 
 
 ## Try out
