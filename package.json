@@ -20,13 +20,13 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@dynatrace/dt-app": "0.98.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^16.11.34",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
+    "dt-app": "0.99.1",
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
@@ -34,12 +34,11 @@
     "ts-jest": "^29.0.5"
   },
   "dependencies": {
-    "@dynatrace-sdk/app-environment": "1.0.0",
-    "@dynatrace-sdk/client-classic-environment-v1": "1.0.2",
-    "@dynatrace-sdk/client-query-v02": "0.4.11",
-    "@dynatrace-sdk/navigation": "1.0.0",
-    "@dynatrace/sdk-web": "0.7.3",
-    "@dynatrace/strato-components-preview": "0.94.1",
+    "@dynatrace-sdk/app-environment": "^1.0.0",
+    "@dynatrace-sdk/client-classic-environment-v1": "^1.0.2",
+    "@dynatrace-sdk/client-query": "^1.0.5",
+    "@dynatrace-sdk/navigation": "^1.0.0",
+    "@dynatrace/strato-components-preview": "^0.94.3",
     "@tanstack/react-query": "^4.28.0",
     "@tanstack/react-query-devtools": "^4.29.3",
     "react": "^17.0.0",
