@@ -23,7 +23,7 @@ Our sample apps give a good overview of how Dynatrace Apps can help solve specif
 
 ## Support
 
-Please note that the app is intended mostly for educational purposes. It aims to illustrate the main concepts of app development and should be easy to understand. Therefor it provides only limited functionality and does not always cover all edge cases. You can use the app as a starting point for your own development. It is covered under the “light support” provisions of the Dynatrace terms and conditions.
+Please note that the app is intended mostly for educational purposes. It aims to illustrate the main concepts of app development and should be easy to understand. Therefore it provides only limited functionality and does not always cover all edge cases. You can use the app as a starting point for your own development. It is covered under the “light support” provisions of the Dynatrace terms and conditions.
 
 ## Getting Started with your Dynatrace App
 
