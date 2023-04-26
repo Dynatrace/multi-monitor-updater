@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Flex, Heading, Modal, FilterItemValues, Grid } from '@dynatrace/strato-components-preview';
+import { Button, FilterItemValues, Flex, Grid, Heading, Modal } from '@dynatrace/strato-components-preview';
 import { MonitorList } from './MonitorList';
 
 import { ListFilters } from './ListFilters';
@@ -71,7 +71,7 @@ export const Home = () => {
         </Flex>
       </Flex>
       <ListFilters onFiltersChanged={filtersChangedHandler} />
-      <Grid gridTemplateColumns='repeat(auto-fit, minmax(600px, 1fr));'>
+      <Grid gridTemplateColumns='repeat(auto-fit, minmax(570px, 1fr));'>
         <MonitorList
           monitors={filteredMonitors}
           isLoading={isLoading}
