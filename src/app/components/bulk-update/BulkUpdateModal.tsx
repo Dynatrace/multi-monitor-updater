@@ -9,6 +9,7 @@ import { Switch } from '@dynatrace/strato-components-preview/forms';
 import { useMonitors } from '../monitors/useMonitors';
 import { progressLabel, progressVariant } from './progress-helpers';
 import { useBulkUpdate } from './useBulkUpdate';
+import { FormattedMessage } from 'react-intl';
 
 const commonConfigParameters: ConfigParam[] = [ConfigParam.OUTAGE_HANDLING, ConfigParam.LOCATIONS, ConfigParam.TAGS];
 
@@ -96,14 +97,22 @@ export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps
 
       return { updatedConfig, monitorId: config.entityId };
     });
-    mutate(updates);
+    void mutate(updates);
   };
 
   return initialBulkConfig ? (
     <Fragment>
-      {isError && <Text>Error: Could not fetch the requested configurations.</Text>}
+      {isError && <Text>
+        <FormattedMessage
+          defaultMessage='Error: Could not fetch the requested configurations.'
+          id="ib3WYM2sd99R20fb"
+        />
+      </Text>}
       <Switch name='update-scope' value={saveCurrentOnly} onChange={setSaveCurrentOnly}>
-        Save changes to the currently selected parameter only
+        <FormattedMessage
+          defaultMessage='Save changes to the currently selected parameter only'
+          id="Qd9OtxTFH8tEOigX"
+        />
       </Switch>
       <ParameterUpdateSection
         availableConfigParameters={availableConfigParameters}
@@ -117,23 +126,36 @@ export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps
         <ProgressBar value={progress} max={1} variant={progressVariant(updateStatus)}>
           <ProgressBar.Label>{progressLabel(updateStatus)}</ProgressBar.Label>
           <ProgressBar.Value>
-            {data.length} / {selectedIds.length}
+            <FormattedMessage
+              defaultMessage='{data} / {selected}'
+              id="IepqjOHRkCpSP1US"
+              values={{ data: data.length, selected: selectedIds.length }}
+            />
           </ProgressBar.Value>
         </ProgressBar>
       ) : null}
       <Flex flexDirection='row' justifyContent='flex-start'>
         {updateStatus === 'success' || updateStatus === 'error' ? (
           <Button data-testid='close-modal-button' color='primary' variant={'accent'} onClick={onDismiss}>
-            Close
+            <FormattedMessage
+              defaultMessage='Close'
+              id="u/p3PlpjpepYybYg"
+            />
           </Button>
         ) : (
           <>
             <Button color='primary' variant={'accent'} disabled={!isSuccess || updateStatus === 'loading'}
                     onClick={saveUpdateHandler}>
-              Update
+              <FormattedMessage
+                defaultMessage='Update'
+                id="+5HiT6UtjSsyk3vw"
+              />
             </Button>
             <Button color='neutral' onClick={onDismiss}>
-              Cancel
+              <FormattedMessage
+                defaultMessage='Cancel'
+                id="d9/SE19NtybEcpm7"
+              />
             </Button>
           </>
         )}

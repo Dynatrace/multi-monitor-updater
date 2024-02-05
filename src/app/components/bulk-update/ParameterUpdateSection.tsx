@@ -7,6 +7,7 @@ import { ParameterUpdateDescription } from './ParameterUpdateDescription';
 import { validateParamType } from '../../utils/display';
 import { Text } from '@dynatrace/strato-components-preview/typography';
 import Colors from '@dynatrace/strato-design-tokens/colors';
+import { FormattedMessage } from 'react-intl';
 
 interface ParamUpdateSectionProps {
   availableConfigParameters: ConfigParam[];
@@ -118,7 +119,14 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
       <Flex flexItem height={300}>
         <CodeEditor key={(selectedParam?.[0]) ?? ''} language='json' lineWrap fullHeight value={editorContent} onChange={editorContentChangeHandler} />
       </Flex>
-      {error && <Text style={{ color: Colors.Text.Critical.Default }}>Error: {error}</Text>}
+      {error &&
+        <Text style={{ color: Colors.Text.Critical.Default }}>
+          <FormattedMessage
+            defaultMessage='Error: {error}'
+            id="rFjB1mXLK1wQNfh+"
+            values={{ error: error }}
+          />
+        </Text>}
       <ParameterUpdateDescription selectedParam={selectedParam?.[0]} />
     </Fragment>
   );

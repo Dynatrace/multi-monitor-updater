@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, ExternalLink, Flex, Heading, Paragraph } from '@dynatrace/strato-components-preview';
+import { FormattedMessage } from 'react-intl';
 
 export const WhatsNext = () => {
   return (
@@ -14,12 +15,25 @@ export const WhatsNext = () => {
     >
       <Flex flexDirection='column' alignItems='left' gap={4}>
         <Heading as='h2' level={6}>
-          What&apos;s next?
+          <FormattedMessage
+            defaultMessage='What&apos;s next?'
+            id="PUs2vFdFe5kgmVEC"
+          />
         </Heading>
-        <Paragraph>Fork this app on GitHub and learn how to write apps for Dynatrace.</Paragraph>
+        <Paragraph>
+          <FormattedMessage
+            defaultMessage='Fork this app on GitHub and learn how to write apps for Dynatrace.'
+            id="eoIzSOxbamBnxaF0"
+          />
+        </Paragraph>
       </Flex>
       <Flex alignItems='right'>
-        <ExternalLink href='https://github.com/Dynatrace/multi-monitor-updater'>Fork on Github</ExternalLink>
+        <ExternalLink href='https://github.com/Dynatrace/multi-monitor-updater'>
+          <FormattedMessage
+            defaultMessage='Fork on Github'
+            id="DQwSD5+JNxsRLhuT"
+          />
+        </ExternalLink>
       </Flex>
     </Container>
   );

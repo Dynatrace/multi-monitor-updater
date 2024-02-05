@@ -7,6 +7,7 @@ import { MonitorConfigPreview } from './MonitorConfigPreview';
 import { BulkUpdateModal } from '../bulk-update/BulkUpdateModal';
 import { useMonitorsCollection } from './useMonitorsCollection';
 import { SelectedMonitorsChip } from '../SelectedMonitorsChip';
+import { FormattedMessage } from 'react-intl';
 
 export const Home = () => {
   const [filterItemValues, setFilterItemValues] = useState<FilterItemValues>({
@@ -56,7 +57,10 @@ export const Home = () => {
     <Flex flexDirection='column' gap={16}>
       <Flex flexDirection={'row'} justifyContent={'space-between'} flexGrow={1}>
         <Heading as='h2' level={4}>
-          Synthetic monitors
+          <FormattedMessage
+            defaultMessage='Synthetic monitors'
+            id="1H2VoAgLOSUOBFz0"
+          />
         </Heading>
         <Flex flexDirection={'row'} alignItems={'baseline'}>
           <SelectedMonitorsChip monitors={selectedForEdit} />
@@ -66,7 +70,10 @@ export const Home = () => {
             onClick={() => setShowFormModal(true)}
             disabled={selectedForEdit.length === 0}
           >
-            Edit
+            <FormattedMessage
+              defaultMessage='Edit'
+              id="UwFkjc9rU878ntUp"
+            />
           </Button>
         </Flex>
       </Flex>

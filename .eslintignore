@@ -1,3 +1,12 @@
+.dt-app
+.git
+.ci
 node_modules
+reports
+assets
 dist
-dtp.config.ts
+screenshots
+**/setupJest.ts
+**/jest.config.js
+coverage
+testcafe-tests-execution.log

@@ -8,6 +8,7 @@ import {
   TableVariantConfig,
   Text,
 } from '@dynatrace/strato-components-preview';
+import { FormattedMessage } from 'react-intl';
 
 interface MonitorListProps {
   monitors?: MonitorCollectionElement[];
@@ -98,7 +99,12 @@ export const MonitorList = (props: MonitorListProps) => {
         <Skeleton height={50} />
       ) : (
         <Flex paddingTop={8}>
-          <Text textStyle='base-emphasized'>No monitors found.</Text>
+          <Text textStyle='base-emphasized'>
+            <FormattedMessage
+              defaultMessage='No monitors found.'
+              id="Ic+DUPiBbG29qe+8"
+            />
+          </Text>
         </Flex>
       )}
     </>
