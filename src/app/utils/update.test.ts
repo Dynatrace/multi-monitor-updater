@@ -19,7 +19,7 @@ const existing: SyntheticMonitor = {
   type: SyntheticMonitorType.Browser,
   enabled: true,
   createdFrom: SyntheticMonitorCreatedFrom.Api,
-  script: '',
+  script: {},
   locations: ['loc1'],
   tags: [],
   managementZones: [],
