@@ -13,7 +13,7 @@ export const WhatsNext = () => {
       paddingY={12}
       paddingX={16}
     >
-      <Flex flexDirection='column' alignItems='left' gap={4}>
+      <Flex flexDirection='column' alignItems='flex-start' gap={4}>
         <Heading as='h2' level={6}>
           <FormattedMessage
             defaultMessage='What&apos;s next?'
@@ -27,7 +27,7 @@ export const WhatsNext = () => {
           />
         </Paragraph>
       </Flex>
-      <Flex alignItems='right'>
+      <Flex alignItems='flex-end'>
         <ExternalLink href='https://github.com/Dynatrace/multi-monitor-updater'>
           <FormattedMessage
             defaultMessage='Fork on Github'

@@ -43,7 +43,7 @@
     "@dynatrace-sdk/client-query": "^1.5.1",
     "@dynatrace-sdk/navigation": "^1.0.1",
     "@dynatrace-sdk/ui-monitoring-events": "1.6.4",
-    "@dynatrace/strato-components-preview": "^0.108.6",
+    "@dynatrace/strato-components-preview": "^0.112.0",
     "@tanstack/react-query": "^4.28.0",
     "@tanstack/react-query-devtools": "^4.29.3",
     "react": "^17.0.0",
