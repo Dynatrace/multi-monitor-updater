@@ -9,12 +9,14 @@ export const ParameterUpdateDescription = ({ selectedParam }: { selectedParam: C
   const isListParam = selectedParam !== ConfigParam.FREQUENCY && selectedParam !== ConfigParam.OUTAGE_HANDLING;
 
   if (!selectedParam) {
-    return <Text>
-      <FormattedMessage
-        defaultMessage='No parameter selected.'
-        id="li8U9WH48SN+Bz87"
-      />
-    </Text>;
+    return (
+      <Text textStyle="base">
+        <FormattedMessage
+          defaultMessage='No parameter selected.'
+          id="li8U9WH48SN+Bz87"
+        />
+      </Text>
+    );
   }
   return (
     <Flex flexDirection='column' gap={4} paddingTop={4}>

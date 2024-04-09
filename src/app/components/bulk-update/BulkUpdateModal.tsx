@@ -102,7 +102,7 @@ export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps
 
   return initialBulkConfig ? (
     <Fragment>
-      {isError && <Text>
+      {isError && <Text textStyle="base">
         <FormattedMessage
           defaultMessage='Error: Could not fetch the requested configurations.'
           id="ib3WYM2sd99R20fb"
@@ -145,7 +145,7 @@ export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps
         ) : (
           <>
             <Button color='primary' variant={'accent'} disabled={!isSuccess || updateStatus === 'loading'}
-                    onClick={saveUpdateHandler}>
+              onClick={saveUpdateHandler}>
               <FormattedMessage
                 defaultMessage='Update'
                 id="+5HiT6UtjSsyk3vw"

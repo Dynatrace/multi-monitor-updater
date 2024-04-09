@@ -11,7 +11,7 @@ export const App = () => {
   const [detailsDismissed, setDetailsDismissed] = useState<boolean>(false);
 
   return (
-    <Page>
+    (<Page>
       <Page.Header>
         <AppHeader />
       </Page.Header>
@@ -53,19 +53,19 @@ export const App = () => {
               />
             </Heading>
             <List>
-              <Text>
+              <Text textStyle="base">
                 <FormattedMessage
                   defaultMessage='how to build your own app that uses Dynatrace API and core UI components,'
                   id="UPSUFNWMwIz9Cs2+"
                 />
               </Text>
-              <Text>
+              <Text textStyle="base">
                 <FormattedMessage
                   defaultMessage='how to deal with bulk updates of synthetic monitors configurations,'
                   id="3qnmftax1iAOkdPk"
                 />
               </Text>
-              <Text>
+              <Text textStyle="base">
                 <FormattedMessage
                   defaultMessage='how to display the results in the app UI.'
                   id="3rzTKOFVU1wjLmZv"
@@ -80,6 +80,6 @@ export const App = () => {
       <Page.DetailView onDismissChange={(state) => setDetailsDismissed(state)} dismissed={detailsDismissed}>
         <SideBarContent onClose={() => setDetailsDismissed(true)} />
       </Page.DetailView>
-    </Page>
+    </Page>)
   );
 };

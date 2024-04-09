@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'
 import { AppRoot } from '@dynatrace/strato-components-preview';
 import { createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 import { App } from './app/App';
@@ -27,17 +27,17 @@ const Routing = (
   </Route>
 )
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root')!);
+root.render(
   <AppRoot>
     <Tracking>
       <QueryClientProvider client={queryClient}>
         <RouterProvider
           router={createBrowserRouter(createRoutesFromElements(Routing), {
             basename: '/ui',
-        })}></RouterProvider>
+          })}></RouterProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Tracking>
   </AppRoot>,
-  document.getElementById('root'),
 );

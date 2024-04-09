@@ -99,7 +99,7 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
   }
 
   return (
-    <Fragment>
+    (<Fragment>
       <FormField label='Select configuration parameter'>
         {
           <Select
@@ -120,7 +120,7 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
         <CodeEditor key={(selectedParam?.[0]) ?? ''} language='json' lineWrap fullHeight value={editorContent} onChange={editorContentChangeHandler} />
       </Flex>
       {error &&
-        <Text style={{ color: Colors.Text.Critical.Default }}>
+        <Text style={{ color: Colors.Text.Critical.Default }} textStyle="base">
           <FormattedMessage
             defaultMessage='Error: {error}'
             id="rFjB1mXLK1wQNfh+"
@@ -128,6 +128,6 @@ export const ParameterUpdateSection = (props: ParamUpdateSectionProps) => {
           />
         </Text>}
       <ParameterUpdateDescription selectedParam={selectedParam?.[0]} />
-    </Fragment>
+    </Fragment>)
   );
 };

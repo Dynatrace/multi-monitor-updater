@@ -70,7 +70,7 @@ export const MonitorList = (props: MonitorListProps) => {
     [onSelectedForPreviewHandler, selectedForPreview],
   );
 
-  const rowSelectionChangedHandler = (selectedRows: Record<string, boolean> ,data: Array<MonitorCollectionElement>) => {
+  const rowSelectionChangedHandler = (selectedRows: Record<string, boolean>, data: Array<MonitorCollectionElement>) => {
     onSelectedForEditChange(data.map((item) => item.entityId));
   };
 
