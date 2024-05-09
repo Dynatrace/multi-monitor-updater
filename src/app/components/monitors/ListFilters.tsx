@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FilterBar, FilterItemValues } from '@dynatrace/strato-components-preview/filters';
-import { Select, SelectOption, TextInput } from '@dynatrace/strato-components-preview/forms';
-import { Mapper } from '../helpers/Mapper';
+import { SelectV2, SelectV2SingleValue, TextInput } from '@dynatrace/strato-components-preview/forms';
 
 const monitorTypeOptions = [
   { id: 'ALL', displayName: 'All' },
@@ -13,19 +12,25 @@ type ListFilterProps = {
   onFiltersChanged: (appliedFilters: FilterItemValues) => void;
 };
 
+
 export const ListFilters = ({ onFiltersChanged }: ListFilterProps) => {
+  const handleSelectChange = (value: SelectV2SingleValue<string | undefined>) => {
+    setSelectedValue(value === null || value === 'ALL' ? undefined : value);
+  };
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(undefined);
   return (
     <FilterBar onFilterChange={onFiltersChanged}>
       <FilterBar.Item name='type' label='Type'>
-        <Mapper defaultValue={['ALL']}>
-          <Select defaultSelectedId={['ALL']} name='type' id='type-select'>
+        <SelectV2 value={selectedValue ?? 'ALL'} onChange={handleSelectChange} name='type' id='type-select' >
+          <SelectV2.Trigger width='90px' />
+          <SelectV2.Content width='105px'>
             {monitorTypeOptions.map((type) => (
-              <SelectOption key={type.id} id={type.id}>
+              <SelectV2.Option key={type.id} value={type.id}>
                 {type.displayName}
-              </SelectOption>
+              </SelectV2.Option>
             ))}
-          </Select>
-        </Mapper>
+          </SelectV2.Content>
+        </SelectV2>
       </FilterBar.Item>
       <FilterBar.Item name='name' label='Name'>
         <TextInput placeholder={'Provide monitor name'} />

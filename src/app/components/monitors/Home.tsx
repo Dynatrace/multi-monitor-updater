@@ -36,7 +36,7 @@ export const Home = () => {
       monitors?.filter((monitor) =>
         monitor.name
           .toLocaleLowerCase()
-          .includes(((filterItemValues.name.value as string | undefined) || '').toLocaleLowerCase()),
+          .includes(((filterItemValues.name.value as string | undefined) ?? '').toLocaleLowerCase()),
       ),
     [monitors, filterItemValues.name.value],
   );
@@ -57,10 +57,7 @@ export const Home = () => {
     <Flex flexDirection='column' gap={16}>
       <Flex flexDirection={'row'} justifyContent={'space-between'} flexGrow={1}>
         <Heading as='h2' level={4}>
-          <FormattedMessage
-            defaultMessage='Synthetic monitors'
-            id="1H2VoAgLOSUOBFz0"
-          />
+          <FormattedMessage defaultMessage='Synthetic monitors' id='1H2VoAgLOSUOBFz0' />
         </Heading>
         <Flex flexDirection={'row'} alignItems={'baseline'}>
           <SelectedMonitorsChip monitors={selectedForEdit} />
@@ -70,15 +67,14 @@ export const Home = () => {
             onClick={() => setShowFormModal(true)}
             disabled={selectedForEdit.length === 0}
           >
-            <FormattedMessage
-              defaultMessage='Edit'
-              id="UwFkjc9rU878ntUp"
-            />
+            <FormattedMessage defaultMessage='Edit' id='UwFkjc9rU878ntUp' />
           </Button>
         </Flex>
       </Flex>
-      <ListFilters onFiltersChanged={filtersChangedHandler} />
-      <Grid gridTemplateColumns='repeat(auto-fit, minmax(570px, 1fr));'>
+      <ListFilters
+        onFiltersChanged={filtersChangedHandler}
+      />
+      <Grid gridTemplateColumns='repeat(auto-fit, minmax(570px, 1fr))'>
         <MonitorList
           monitors={filteredMonitors}
           isLoading={isLoading}

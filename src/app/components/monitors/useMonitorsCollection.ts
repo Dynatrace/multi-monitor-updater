@@ -13,24 +13,28 @@ function createMonitorsConfig(filterItemValues: FilterItemValues): MonitorsQuery
   const config: MonitorsQueryConfig = {};
   Object.entries(filterItemValues).forEach(([key, { value }]) => {
     switch (key) {
-      case 'type':
-        const filterValues = value as string[];
-        config.type = filterValues[0] !== 'ALL' ? filterValues[0] : undefined;
+      case 'type': {
+        const filterValues = value as string;
+        config.type = filterValues !== 'ALL' ? filterValues : undefined;
         break;
-      case 'location':
+      }
+      case 'location': {
         const location = value as string;
         config.location = location?.length > 0 ? location : undefined;
         break;
-      case 'assignedApps':
+      }
+      case 'assignedApps': {
         const assignedApps = value as string;
         config.assignedApps = assignedApps?.length > 0 ? [assignedApps] : undefined;
         break;
-      case 'tag':
+      }
+      case 'tag': {
         const tag = value as string[]; // TODO: this should be an array of tags on the API but i don't see this handled somewhere
         config.tag = tag?.length > 0 ? tag : undefined;
         break;
+      }
     }
-  });
+  })
   return config;
 }
 

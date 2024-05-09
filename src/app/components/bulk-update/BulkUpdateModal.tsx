@@ -62,7 +62,7 @@ type BulkUpdateModalProps = {
 };
 
 export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps) => {
-  const [selectedParam, setSelectedParam] = useState<ConfigParam[] | null>([ConfigParam.OUTAGE_HANDLING]);
+  const [selectedParam, setSelectedParam] = useState<ConfigParam>(ConfigParam.OUTAGE_HANDLING);
   const [saveCurrentOnly, setSaveCurrentOnly] = useState<boolean>(false);
   const [updatedBulkConfig, dispatchParamChange] = useReducer(updateParamStateReducer, {});
 
@@ -92,7 +92,7 @@ export const BulkUpdateModal = ({ selectedIds, onDismiss }: BulkUpdateModalProps
     }
     const updates = data.map((config) => {
       const updatedConfig = saveCurrentOnly
-        ? getUpdateDtoForCurrentSelection(config, initialBulkConfig, updatedBulkConfig, selectedParam?.[0])
+        ? getUpdateDtoForCurrentSelection(config, initialBulkConfig, updatedBulkConfig, selectedParam)
         : getUpdateDto(config, initialBulkConfig, updatedBulkConfig, currentMode);
 
       return { updatedConfig, monitorId: config.entityId };

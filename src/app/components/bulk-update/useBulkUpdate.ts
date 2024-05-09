@@ -28,25 +28,25 @@ export function useBulkUpdate() {
 
   const mutation = useReplaceMonitor();
   const mutate = useCallback(
-    (updates: Array<BulkUpdate>) => {
+    async (updates: Array<BulkUpdate>) => {
       setTotal(updates.length);
       setStatus('loading');
       const promises = updates.map((update) => {
         return mutation.mutateAsync(update, {
-          onSettled: () => { setProgress((prev) => prev + 1) },
+          onSettled: () => {
+            setProgress((prev) => prev + 1);
+          },
         });
       });
-      return Promise.allSettled(promises).then((results) => {
-        const isError = results.some((result) => result.status === 'rejected');
-
-        if (isError) {
-          setStatus('error')
-        } else {
-          setStatus('success');
-          queryClient.invalidateQueries({ queryKey: ['monitor'], type: 'all' });
-        }
-        return results;
-      });
+      const results = await Promise.allSettled(promises);
+      const isError = results.some((result_1) => result_1.status === 'rejected');
+      if (isError) {
+        setStatus('error');
+      } else {
+        setStatus('success');
+        await queryClient.invalidateQueries({ queryKey: ['monitor'], type: 'all' });
+      }
+      return results;
     },
     [mutation, queryClient],
   );
